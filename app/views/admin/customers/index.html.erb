@@ -1,0 +1,28 @@
+<div class="container">
+    <h3>会員一覧画面</h3>
+    <table class="table table-hover table-inverse table-bordered">
+      <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+         <%=@customers.each do |customer|%>
+        <tr>
+          <td><%= customer.id %></td>
+          <td>
+            <%= customer.fast_name %>
+            <%= customer.second_name%>
+          </td>
+          <td><%= customer.email %></td>
+          <td>有効</td><!-- admin_statusを表示 -->
+        </tr>
+      </tbody>
+       <% end %>
+    </table>
+    <div>
+      <%= paginate @customers %>
+    </div>
