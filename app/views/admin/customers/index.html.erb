@@ -19,8 +19,16 @@
           <% end %>
         </td>
         <td><%= customer.email %></td>
-        <!-- admin_statusを表示 -->
-        <td>有効</td>
+        <td>会員ステータス</td>
+        <td>
+          <!--もし@customerのis_deletedに入っているデータがtrueだったら？-->
+          <!--有効と表示そうでない時は、無効と表示する-->
+          <% if customer.is_deleted ==　true %>
+            <p class="custome_validity">有効</p>
+          <% else%>
+            <p class="custome_Invalid">無効</p>
+          <% end %>
+        </td>
       </tr>
     </tbody>
       <% end %>
