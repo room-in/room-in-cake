@@ -1,38 +1,46 @@
     <div class="container">
-      <h3>山田花子さんの会員詳細</h3>
+      <h3>の会員詳細</h3>
       <table>
         <tbody>
           <tr>
             <td>会員ID</td>
-            <td>1</td>
+            <td><%= @customer.id %></td>
           </tr>
           <tr>
             <td>氏名</td>
-            <td>山田花子</td>
+            <td><%= @customer.fast_name %> <%= @customer.second_name %></td>
           </tr>
           <tr>
             <td>フリガナ</td>
-            <td>ヤマダハナコ</td>
+            <td><%= @customer.kana_fast_name %> <%= @customer.kana_second_name %></td>
           </tr>
           <tr>
             <td>郵便番号</td>
-            <td>1500041</td>
+            <td><%= @customer.postal_code %></td>
           </tr>
           <tr>
             <td>住所</td>
-            <td>東京都渋谷区神南1丁目19-11</td>
+            <td><%= @customer.address %></td>
           </tr>
           <tr>
             <td>電話番号</td>
-            <td>08011112222</td>
+            <td><%= @customer.telephone_number %></td>
           </tr>
           <tr>
             <td>メールアドレス</td>
-            <td>hoge@mail.com</td>
+            <td><%= @customer.email %></td>
           </tr>
           <tr>
             <td>会員ステータス</td>
-            <td>有効/無効</td>
+            <td>
+              <!--もし@customerのis_deletedに入っているデータがtrueだったら？-->
+              <!--有効と表示そうでない時は、無効と表示する-->
+              <% if @customer.is_deleted ==　true %>
+               <p class="custome_validity">有効</p>
+              <% else%>
+               <p class="custome_Invalid">無効</p>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
