@@ -1,0 +1,37 @@
+    <div class="container">
+      <div class="row">
+        <h3>山田花子さんの会員情報</h3>
+        <%= form_with model:@customer, local:true do |f| %>
+            <div class="form-group row">
+                <%= f.label :id %>
+                <%= @customer.id %>
+            </div>
+            <div class="form-group row">
+                <%= f.label :氏名 %>
+                <%= f.text_field :name, class: "form-control" %>
+                <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="form-group row">
+                <%= f.label :フリガナ %>
+                <%= f.text_field :name, class: "form-control" %>
+                <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="form-group row">
+                <%= f.label :郵便番号 %>
+                <%= f.text_field :post_code, class: "form-control" %>
+            </div>
+            <div class="form-group row">
+                <%= f.label :住所 %>
+                <%= f.text_field :address, class: "form-control" %>
+            </div>
+            <div class="form-group row">
+                <%= f.label :電話番号 %>
+                <%= f.text_field :post_code, class: "form-control" %>
+            </div>
+            <div class="form-group row">
+                <%= f.label :メールアドレス %>
+                <%= f.text_field :email, class: "form-control" %>
+            </div>
+       < % end %>
+      </div>
+    </div>
