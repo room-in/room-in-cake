@@ -16,13 +16,31 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ 
+ 
+ body {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+  　flex-direction: column;
+　  min-height: 100vh;
+}
+
+.box {
+    position: relative;
+}
+
+.box p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000;
+    color: #fff;
+
 
 // footerの表示位置固定
-body{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 footer {
   margin-top: auto;
 }
