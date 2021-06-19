@@ -1,5 +1,5 @@
     <div class="container">
-      <h3>の会員詳細</h3>
+      <h3><%= @customer.fast_name %> <%= @customer.second_name %>の会員詳細</h3>
       <table>
         <tbody>
           <tr>
@@ -44,4 +44,10 @@
           </tr>
         </tbody>
       </table>
+      <div class="container">
+        <div class="row">
+          <%= link_to "編集する", edit_admin_customer_path(customer.id), class:"btn btn-success" %>
+          <%= link_to "注文履歴一覧を見る", admin_homes_path, class:"btn btn-primary" %>
+        </div>
+      </div>
     </div>
