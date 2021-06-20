@@ -1,0 +1,28 @@
+<div class='container'>
+  <div class='row'>
+       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h3 class="title">商品一覧</h3>
+  		<table class='table'>
+  		  <thead>
+  		   <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+         </tr>
+        </thead>
+        <% @items.each do |item| %>
+        <tbody>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admins_item_path(item) %></td>
+            <td><%= item.sub_price %></td>
+            <td><%= item.genre.name %></td>
+            <td><%= item.status ? "販売中" : "販売停止中" %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+</div>
+</div>
