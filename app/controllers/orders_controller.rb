@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  def conplete
+  def complete
   end
 
   def create
