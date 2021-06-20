@@ -3,7 +3,7 @@
             <!--editアクションの中で、変数作って表示した方が短くなるかも？？-->
             <!--＠変数名 = params[:fast_name,:second_name]で送信されたデータから取り出せる？？-->
             <div>
-            <h3><%= @customer.fast_name %> <%= @customer.second_name %> の会員情報</h3>
+            <h3><%= (@customer.fast_name + @customer.second_name) %> の会員情報</h3>
             </div>
             <!--変更前は、model:@customerのみの記述-->
             <!--admin/customer/:idではなく、customer/:idにデータが送られていた為、エラー発生→url指定して解決-->
