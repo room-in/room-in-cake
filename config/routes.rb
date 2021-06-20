@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :customers
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get 'homes' => 'homes#top'
+  root :to => "homes#top"
   get 'about' => 'homes#about'
   resources :items, only: [:index, :show]
   resources :customers, only: [:show, :edit, :update]
@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   patch 'customers/withdraw' => 'public/customers#withdraw'
   resources :cart_items, except: [:new,:show,:edit]
   delete 'cart_items/destory_all' => 'public/cart_items#destroy_all'
+  get 'orders/complete' => 'orders#complete'
   resources :orders, only: [:new, :create, :index, :show]
-  get 'orders/complete' => 'public/orders#conplete'
+
   post 'orders/confirm' => 'public/orders#confirm'
   resources :address, except: [:new, :show]
   namespace :admin do
