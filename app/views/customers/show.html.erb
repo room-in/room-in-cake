@@ -30,12 +30,12 @@
 
   <div class="form-group row">
     <h6>登録情報</h6>
-    <h6><%= link_to '編集する', edit_customer_path(customer.id)%></h6>
+    <h6><%= link_to '編集する', edit_customer_path(@customer.id)%></h6>
   </div>
 
   <div class="form-group row">
     <h6>配送先</h5>
-    <h6><%= link_to '一覧を見る', address_index_path %></h6>
+    <h6><%= link_to '一覧を見る', adresses_path %></h6>
   </div>
 
   <div class="form-group row">

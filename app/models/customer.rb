@@ -10,6 +10,9 @@ class Customer < ApplicationRecord
   validates :kana_second_name, length: { minimum: 2, maximum: 20 }
   validates :postal_code, length: { minimum: 7, maximum: 7 }
   validates :address, length: { minimum: 5, maximum: 50 }
-  validates :telephone_number, length: { minimum: 11, maximum: 12 }  
+  validates :telephone_number, length: { minimum: 11, maximum: 12 }
+
+  has_many :adresses, dependent: :destroy
+
 
 end

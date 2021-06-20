@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create, :index, :show]
   get 'orders/complete' => 'public/orders#conplete'
   post 'orders/confirm' => 'public/orders#confirm'
-  resources :address, except: [:new, :show]
+  resources :adresses, except: [:new, :show]
   namespace :admin do
     get 'homes' => 'admin/homes#top'
     resources :items, except: [:destroy]
