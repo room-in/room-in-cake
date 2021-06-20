@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   patch 'customers/withdraw' => 'public/customers#withdraw'
   resources :cart_items, except: [:new,:show,:edit]
   delete 'cart_items/destory_all' => 'public/cart_items#destroy_all'
+  get 'orders/complete' => 'orders#conplete'
   resources :orders, only: [:new, :create, :index, :show]
-  get 'orders/complete' => 'public/orders#conplete'
+
   post 'orders/confirm' => 'public/orders#confirm'
   resources :address, except: [:new, :show]
   namespace :admin do
