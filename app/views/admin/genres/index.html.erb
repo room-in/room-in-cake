@@ -1,8 +1,9 @@
+<div class="container">
 <div class="row">
 <h2>ジャンル一覧・追加</h2>
 </div>
 
-<%= form_for(@genre, url:'/admins/genres') do |f| %>
+<%= form_for(@genre, url:'/admin/genres') do |f| %>
 
 	        <p>ジャンル</p>
           <%= f.text_field :name  %>
@@ -28,4 +29,5 @@
       </table>
     </div>
   </div>
-</div>  
+</div>
+</div>
