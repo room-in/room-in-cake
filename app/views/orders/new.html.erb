@@ -1,0 +1,61 @@
+<div class="container">
+  <div>
+    <h2>注文情報入力</h2>
+
+    <!--%= form_for(@order, url: confirm_orders_path) do |f| %>-->
+        <h3>支払方法</h3>
+        <div class="row">
+          <!--enum?boolean?とりあえずbooleanバージョン-->
+          <!--booleanにするなら、orderテーブルのデータ型直す！-->
+          <!--%= f.radio_button :カラム名, :true %>-->
+          <!--%= f.label :カラム名, 'クレジットカード', value: true %>-->
+          <input type = "radio">
+          <p>クレジットカード</p>
+        </div>
+        <div class="row">
+          <!--%= f.radio_button :カラム名, :false %>-->
+          <!--%= f.label :カラム名, '銀行振込', value: false %>-->
+          <input type = "radio">
+          <p>銀行振込</p>
+        </div>
+
+        <h3>お届け先</h3>
+        <table>
+          <tbody>
+            <tr>
+                <!--たぶん、checked: trueでボタンが選択されているかどうかを判定して-->
+                <!--コントローラーの方で指定されているカラム名のラジオボタンが選択されている状態ならその情報を登録する？？-->
+                <!--%= radio_button_tag :カラム名, "ご自身の住所", checked: true %>-->
+                <!--%= f.label:カラム名, "ご自身の住所", value: true %>-->
+                <!--<p>%= "〒" + current_customer.postal_code + current_customer.address %></p>-->
+                <!--%= current_customer.fast_name + current_customer.second_name%>-->
+                <label><input type = "radio">ご自身の住所</label>
+                <p>〒1500041 東京都渋⾕区神南1丁⽬19−11 パークウェースクエア2 4階</p>
+                <p>⼭⽥花⼦</p>
+            </tr>
+            <tr>
+                <label><input type = "radio">登録済み住所から選択</label>
+                <select name="example2" size="1">
+                  <option value="">住所を選択してください</option>
+                  <option value="選択肢2">選択肢2</option>
+                  <option value="選択肢3">選択肢3</option>
+                  <option value="選択肢4">選択肢4</option>
+                </select>
+            </tr>
+            <tr>
+              <p><label><input type = "radio">新しいお届け先</label></p>
+              <td>
+                <p><label>郵便番号（ハイフンなし）<input type ="text_from"></label></p>
+                <p><label>住　　所 <input type ="text_from"></label></p>
+                <p><label>宛　　名 <input type ="text_from"></label></p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div>
+          <!--%= f.submit '確認画面へ進む', class: "btn btn-primary center-block" %>-->
+          <input type="button" value="確認画面へ進む"> 
+        </div>
+  </div>
+</div>
