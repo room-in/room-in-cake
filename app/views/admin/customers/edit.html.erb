@@ -3,59 +3,64 @@
             <!--editアクションの中で、変数作って表示した方が短くなるかも？？-->
             <!--＠変数名 = params[:fast_name,:second_name]で送信されたデータから取り出せる？？-->
             <div>
-            <h3><%= @customer.fast_name %><%= @customer.second_name %> の会員情報</h3>
+            <h3><%= @customer.fast_name %> <%= @customer.second_name %> の会員情報</h3>
             </div>
+            <!--変更前は、model:@customerのみの記述-->
+            <!--admin/customer/:idではなく、customer/:idにデータが送られていた為、エラー発生→url指定して解決-->
             <%= form_with model:@customer, url: admin_customer_path(@customer), local:true do |f| %>
-            <table>
-                <tr class="form-group row">
-                   <td><%= f.label :会員ID %></td>
-                   <td><%= f.label @customer.id %></td>
-                </tr>
-                <!--たぶん、CSSで間隔あけれるはず？？-->
-                <!--.form-inlineで中にmargin書き込む？？-->
-                <tr class="form-inline">
-                    <td><%= f.label :氏名 %></td>
-                    <td><%= f.text_field :fast_name, class: "form-control" %></td>
-                    <td><%= f.text_field :second_name, class: "form-control" %></td>
-                </tr>
-                <tr class="form-inline">
-                    <td><%= f.label :フリガナ %></td>
-                    <td><%= f.text_field :kana_fast_name, class: "form-control" %></td>
-                    <td><%= f.text_field :kana_second_name, class: "form-control" %></td>
-                </tr>
-                <tr class="form-group row">
-                    <td><%= f.label :郵便番号 %></td>
-                    <td><%= f.text_field :postal_code, class: "form-control" %></td>
-                </tr>
-                <tr class="form-group row">
-                    <td><%= f.label :住所 %></td>
-                    <td><%= f.text_field :address, class: "form-control" %></td>
-                </tr>
-                <tr class="form-group row">
-                    <td><%= f.label :電話番号 %></td>
-                    <td><%= f.text_field :telephone_number, class: "form-control" %></td>
-                </tr>
-                <tr class="form-group row">
-                    <td><%= f.label :メールアドレス %></td>
-                    <td><%= f.text_field :email, class: "form-control" %></td>
-                </tr>
-                <tr class="form-group row">
-                    <td><%= f.label :会員ステータス %></td>
-                    <td class="form-check">
-                      <!--このラジオボタンが選択されていたら、:is_deletedカラムに:trueとデータを送る-->
-                      <!--有効ラベルの方を押しても、ラジオボタンが選択されるようにvalue: trueで連動させる-->
-                      <%= f.radio_button :is_deleted, :true %>
-                      <%= f.label :is_deleted, '有効', value: true %>
-                      <!--:is_deletedカラムに:falseとデータを送る-->
-                      <%= f.radio_button :is_deleted, :false %>
-                      <!--ラジオボタン:falseと連動させる-->
-                      <%= f.label :is_deleted, '無効', value: false %>
-                    </td>
-                </tr>
-                </table>
+            <table class="form">
+                <tbody>
+                    <tr class="form-group row">
+                       <td class="col-md-3" ><%= f.label :会員ID %></td>
+                       <td class="col-md-4"><%= f.label @customer.id %></td>
+                    </tr>
+                    <!--.form-inlineで中にmargin書き込む？？-->
+                    <tr class="form-group row">
+                        <td class="col-md-3"><%= f.label :氏名 %></td>
+                        <td class="col-md-4"><%= f.text_field :fast_name, class: "form-control" %></td>
+                        <td class="col-md-4"><%= f.text_field :second_name, class: "form-control" %></td>
+                    </tr>
+                    <tr class="form-group row">
+                        <td class="col-md-3"><%= f.label :フリガナ %></td>
+                        <td class="col-md-4"><%= f.text_field :kana_fast_name, class: "form-control" %></td>
+                        <td class="col-md-4"><%= f.text_field :kana_second_name, class: "form-control" %></td>
+                    </tr>
+                    <tr class="form-group row">
+                        <td class="col-md-3"><%= f.label :郵便番号 %></td>
+                        <td class="col-md-4"><%= f.text_field :postal_code, class: "form-control" %></td>
+                    </tr>
+                    <tr class="form-group row">
+                        <td class="col-md-3"><%= f.label :住所 %></td>
+                        <td class="col-md-9"><%= f.text_field :address, class: "form-control" %></td>
+                    </tr>
+                    <tr class="form-group row">
+                        <td class="col-md-3"><%= f.label :電話番号 %></td>
+                        <td class="col-md-4"><%= f.text_field :telephone_number, class: "form-control" %></td>
+                    </tr>
+                    <tr class="form-group row">
+                        <td class="col-md-3"><%= f.label :メールアドレス %></td>
+                        <td class="col-md-4"><%= f.text_field :email, class: "form-control" %></td>
+                    </tr>
+                    <tr class="form-group row">
+                        <td class="col-md-3"><%= f.label :会員ステータス %></td>
+                        <td class="form-check col-md-4">
+                          <!--このラジオボタンが選択されていたら、:is_deletedカラムに:trueとデータを送る-->
+                          <!--有効ラベルの方を押しても、ラジオボタンが選択されるようにvalue: trueで連動させる-->
+                          <%= f.radio_button :is_deleted, :true %>
+                          <%= f.label :is_deleted, '有効', value: true %>
+                          <!--:is_deletedカラムに:falseとデータを送る-->
+                          <%= f.radio_button :is_deleted, :false %>
+                          <!--ラジオボタン:falseと連動させる-->
+                          <%= f.label :is_deleted, '無効', value: false %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-                <div>
+                <div class="form_btn">
+                <div class="col-md-4 offset-md-3">
                 <%= f.submit '変更を保存',  class:"btn btn-success" %>
+                </div>
                 </div>
            <% end %>
       </div>
