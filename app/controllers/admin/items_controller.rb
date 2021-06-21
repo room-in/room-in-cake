@@ -9,8 +9,8 @@ def index
 end
 def create
    @item = Item.new(item_params)
-  if @item.save!
-     redirect_to admin_items_path(@item)
+  if @item.save
+     redirect_to admin_items_path
   else
       @newitem = @item
       @genres = Genre.all
