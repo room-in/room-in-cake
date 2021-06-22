@@ -3,6 +3,7 @@ class CartItemsController < ApplicationController
   end
   
   def index
+    @cart_items = current_c
   end
   
   def update
