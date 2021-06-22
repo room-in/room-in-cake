@@ -13,6 +13,10 @@ class Customer < ApplicationRecord
   validates :telephone_number, length: { minimum: 11, maximum: 12 }
 
   has_many :adresses, dependent: :destroy
+  
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 
 
 end

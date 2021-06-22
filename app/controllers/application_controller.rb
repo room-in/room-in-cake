@@ -7,16 +7,16 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:fast_name, :second_name, :kana_fast_name, :kana_second_name, :postal_code, :address, :telephone_number, ])
   end
-  
-  def after_sign_path_for(resource)
-    case resource
-    when Customer
-      homes_path
-    when Admin
-      admin_homes_path
-    end
+
+  def after_sign_in_path_for(resource)
+   if resource.class.name == "Customer"
+      root_path
+   elsif resource.class.name == "Admin"
+      admin_root_path
+   end
   end
-    
+
+
 end
 
 

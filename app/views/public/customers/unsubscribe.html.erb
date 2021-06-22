@@ -1,0 +1,22 @@
+<div class="container">
+　<div class="row">
+    <h5>本当に退会ししますか？</h5>
+  </div>
+
+  <div class="row">
+    <p>
+      退会すると、会員登録情報や</br>
+      これまでの購入履歴が閲覧できなくなります</br>
+      退会する場合は「退会する」をクリックしてください。
+    </p>
+  </div>
+
+  <div class="row">
+    <%= link_to "退会しない", customer_path(current_customer.id),class: "btn btn-outline-danger" %>
+    <% if customer_signed_in?  %>
+        <%= link_to "退会する", withdraw_customers_path(current_customer), method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+    <% end %>
+  </div>
+
+
+</div>
