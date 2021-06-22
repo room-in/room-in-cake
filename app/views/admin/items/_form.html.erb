@@ -20,7 +20,7 @@
     		  </tr>
     		  <tr>
     		  <td>
-    		  <%= f.label :ジャンル %>
+    		 <%= f.label :ジャンル %>
     		  <%= f.collection_select(:genre_id, genres, :id, :name) %>
     		  </td>
     		  </tr>
@@ -33,8 +33,8 @@
     		  <tr>
     		  <td>
     		   <%= f.label :販売ステータス %>
-    		   <%= f.radio_button :status,[['販売中', true]] %>販売中
-    		   <%= f.radio_button :status,[['販売停止中', false]] %>販売停止中
+    		   <%= f.radio_button :status, true %>販売中
+    		   <%= f.radio_button :status, false %>販売停止中
           </td>
           </tr>
           <tr>
