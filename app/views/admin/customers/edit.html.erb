@@ -46,12 +46,12 @@
                         <td class="form-check col-md-4">
                           <!--このラジオボタンが選択されていたら、:is_deletedカラムに:trueとデータを送る-->
                           <!--有効ラベルの方を押しても、ラジオボタンが選択されるようにvalue: trueで連動させる-->
-                          <%= f.radio_button :is_deleted, :true %>
-                          <%= f.label :is_deleted, '有効', value: true %>
-                          <!--:is_deletedカラムに:falseとデータを送る-->
                           <%= f.radio_button :is_deleted, :false %>
+                          <%= f.label :is_deleted, '有効', value: false %>
+                          <!--:is_deletedカラムに:falseとデータを送る-->
+                          <%= f.radio_button :is_deleted, :true %>
                           <!--ラジオボタン:falseと連動させる-->
-                          <%= f.label :is_deleted, '無効', value: false %>
+                          <%= f.label :is_deleted, '無効', value: true %>
                         </td>
                     </tr>
                 </tbody>
