@@ -1,4 +1,4 @@
-class CustomersController < ApplicationController
+class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
@@ -15,6 +15,16 @@ class CustomersController < ApplicationController
     else
       render edit
     end
+  end
+
+  def unsubscribe
+  end
+
+  def withdraw
+    current_customer.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用をお待ちしております。"
+    redirect_to root_path
   end
 
 
