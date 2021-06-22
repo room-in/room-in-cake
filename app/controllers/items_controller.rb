@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
 
   def index
-    # @items = Item.all
-     @items = Item.page(params[:page]).per(8)
+    @items = Item.all
+    @items = Item.page(params[:page]).per(8)
     # if params[:status]
     # else
     # end
@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @cart_items = CartItem.new
+    @cart_item = CartItem.new
   end
 
 end
