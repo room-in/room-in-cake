@@ -1,11 +1,14 @@
 <div class='container'>
   <div class='row'>
-       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+       <div class="col-lg-8 mx-auto">
+      <div class="d-flex justify-content-between">   
       <h3 class="title">商品一覧</h3>
-  		<table class='table'>
-  		<%= link_to new_admin_item_path  do %>
-      <i class="fas fa-plus-circle" size: 9x ></i>
+      <%= link_to new_admin_item_path  do %>
+      <i class="fas fa-plus-circle  isize " size: 9x ></i>
       <% end %>
+      </div>
+  		<table class='table'>
+
   		  <thead>
   		   <tr>
             <th>商品ID</th>
@@ -32,4 +35,6 @@
       </table>
   </div>
 </div>
-         <%= paginate @items %>
+  <div class="d-flex justify-content-center ">
+        <%= paginate @items %>
+  </div>
