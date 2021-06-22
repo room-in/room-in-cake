@@ -23,8 +23,6 @@ end
 
 def edit
   @item = Item.find(params[:id])
-  @newitem = Item.new
-  @genres = Genre.all
 end
 
   private
