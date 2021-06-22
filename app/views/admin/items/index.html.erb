@@ -3,6 +3,9 @@
        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h3 class="title">商品一覧</h3>
   		<table class='table'>
+  		<%= link_to new_admin_item_path  do %>
+      <i class="fas fa-plus-circle" size: 9x ></i>
+      <% end %>
   		  <thead>
   		   <tr>
             <th>商品ID</th>
@@ -27,5 +30,6 @@
         </tbody>
         <% end %>
       </table>
+  </div>
 </div>
-</div>
+         <%= paginate @items %>

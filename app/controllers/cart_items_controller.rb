@@ -3,7 +3,7 @@ class CartItemsController < ApplicationController
   end
   
   def index
-    @cart_items = current_c
+    @cart_items = current_customers
   end
   
   def update
