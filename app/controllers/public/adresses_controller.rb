@@ -1,4 +1,4 @@
-class  AdressesController < ApplicationController
+class Public::AdressesController < ApplicationController
 
   def index
     @adress = Adress.new
@@ -16,10 +16,25 @@ class  AdressesController < ApplicationController
     end
   end
 
+  def edit
+    @adress = Adress.find(params[:id])
+  end
+
+  def update
+    @adress = Adress.find(params[:id])
+    if @adress.update(adress_params)
+      redirect_to adresses_path(@adress)
+    else
+      render edit
+    end
+  end
+
   def destroy
+    @adress = Adress.find(params[:id])
     @adress.destroy
     redirect_to adresses_path
   end
+
 
   private
     def adress_params
