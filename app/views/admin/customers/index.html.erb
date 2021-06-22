@@ -18,7 +18,7 @@
           <td>
             <!--もし@customerのis_deletedに入っているデータがtrueだったら？-->
             <!--有効と表示そうでない時は、無効と表示する-->
-            <% if customer.is_deleted == true %>
+            <% if customer.is_deleted == false %>
               <p class="custome_validity">有効</p>
             <% else%>
               <p class="custome_Invalid">無効</p>
