@@ -13,6 +13,7 @@ class Customer < ApplicationRecord
   validates :telephone_number, length: { minimum: 11, maximum: 12 }
 
   has_many :adresses, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
   
   
   def active_for_authentication?
