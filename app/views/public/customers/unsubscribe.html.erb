@@ -1,9 +1,9 @@
 <div class="container">
-　<div class="row">
+　<div class="row d-flex justify-content-center">
     <h5>本当に退会ししますか？</h5>
   </div>
 
-  <div class="row">
+  <div class="row d-flex justify-content-center">
     <p>
       退会すると、会員登録情報や</br>
       これまでの購入履歴が閲覧できなくなります</br>
@@ -11,11 +11,13 @@
     </p>
   </div>
 
-  <div class="row">
-    <%= link_to "退会しない", customer_path(current_customer.id),class: "btn btn-outline-danger" %>
-    <% if customer_signed_in?  %>
-        <%= link_to "退会する", withdraw_customers_path(current_customer), method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
-    <% end %>
+  <div class="row d-flex justify-content-center">
+    <div class="mlr-10">
+      <%= link_to "退会しない", customer_path(current_customer.id), class: "btn btn-primary" %>
+      <% if customer_signed_in?  %>
+          <%= link_to "退会する", withdraw_customers_path(current_customer), method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-primary" %>
+      <% end %>
+    </div>
   </div>
 
 

@@ -1,36 +1,38 @@
 <div class="container">
-  <div class="row">
+  <div class="my-3">
     <h2>ログイン</h2>
   </div>
-  
-  
+
+  <div class="my-4">
+    <div class="ml-3"><p>会員の方はこちらからログイン</p></div>
+  </div>
+
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-group row">
-      <div class="field">
-        <%= f.label :メールアドレス %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "60*30" %>
-      </div>
-    </div>
-  
-    <div class="form-group row">
-      <div class="field">
-        <%= f.label :パスワード %>
-        <%= f.password_field :password, autocomplete: "current-password", :size => "60*30" %>
-      </div>
-    </div>
-  
-    <div class="form-group row">
-      <div class="actions">
-        <%= f.submit "ログイン"  %>
-      </div>
-    </div>
+  <table class="form d-flex justify-content-center">
+    <tbody>
+      <tr class="form-group row">
+        <td class="col-md-3"><%= f.label :メールアドレス %></td>
+        <td class="col-md-5"><%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "60*30" %></td>
+      </tr>
+
+      <tr class="form-group row">
+        <td class="col-md-3"><%= f.label :パスワード %></td>
+        <td class="col-md-5"><%= f.password_field :password, autocomplete: "current-password", :size => "60*30" %></td>
+      </tr>
+
+      <tr class="form-group row">
+        <td class="col-md-3"></td>
+        <td class="col-md-5"><%= f.submit "ログイン"  %></td>
+      </tr>
+    </tbody>
+  </table>
+
   <% end %>
-  
-  <div class="form-group row">
-    <P>会員登録がお済みではない方</P>
+
+  <div class="my-4">
+    <div class="ml-3"><P>会員登録がお済みではない方</P></div>
   </div>
-  <div class="form-group row">
-    <%= render "devise/shared/links" %>から新規登録を行ってください
-  </div>
-</div>
+
+  <div class="ml-10"><%= render "customers/shared/links" %>から新規登録を行ってください。</div>
 
