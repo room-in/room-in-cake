@@ -6,7 +6,6 @@ end
 def index
   @items = Item.page(params[:page]).per(10)
   @genreitem = Genre.all
-  
 end
 def create
    @item = Item.new(item_params)

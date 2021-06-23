@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+		<h1>注文履歴詳細</h1>
+	</div>
+	<div class="row">
+<div class="row">
+		<div class="col-md-10">
+		  
+		  <%= form_with model: @order, local: true, url: order_admins_order_path do |f| %>
+		 <strong>購入者</strong> 
+			<strong>配送先</strong> 〒
+			<strong>支払い方法</strong> <br>
+			<strong>注文ステータス</strong> 
+							<%= f.submit '更新' %>
+		  
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価（税込）</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>製作ステータス</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% .each do |order_item| %>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<%= f.submit '更新' %>
+								<% end %><br>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
