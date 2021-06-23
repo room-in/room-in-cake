@@ -1,9 +1,13 @@
 class Public::OrdersController < ApplicationController
 
-  def complete
+  def confirm
   end
 
   def create
+    render complete
+  end
+
+  def complete
   end
 
 end

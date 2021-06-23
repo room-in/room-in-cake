@@ -1,21 +1,45 @@
 class Public::CartItemsController < ApplicationController
   def create
+    @item = Item.find(params[:cart_item][:id])
+    @cart_item = CartItem.new
+    @cart_item.customer_id = current_customer.id
+    @cart_item.item_id = @item.id
+    @cart_item.quantity = params[:cart_item][:quantity]
+    @cart_item.save
+    redirect_to cart_items_path
   end
-  
+
   def index
-    @cart_items = current_c
+     # @cart_items = current_customer.cart_items
+    @cart_items = CartItem.where(customer_id:current_customer.id)
   end
-  
+
   def update
+    @item = Item.find(params[:id])
+    @cart_item.quantity = params[:cart_item][:id]
+    @cart_item.update(cart_items_params)
+    flash[:success] = '個数を変更しました'
+    redirect_back(fallback_location: root_path)
   end
-  
+
   def destroy
+    cart_items = CartItem.find_by(id: params[:id], client_id: current_client.id)
+    cart_items.destroy
+    flash[:danger] = "カートから削除しました"
+    redirect_to cart_items_path
   end
-  
+
   def destroy_all
+    customer = Customer.find(current_customer.id)
+    if customer.cart_items.destroy_all
+      flash[:notice] = "カート内の商品を全て削除しました。"
+      redirect_to cart_items_path
+    else
+      render index
+    end
   end
-  
-  
+
+
   private
 
   def cart_items_params
