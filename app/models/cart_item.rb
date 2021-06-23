@@ -1,4 +1,5 @@
 class CartItem < ApplicationRecord
-  has_many :customer, dependent: :destroy
-  has_many :items, dependent: :destroy
+  belongs_to:customer 
+  belongs_to :item
+  validates :quantity, presence: true
 end

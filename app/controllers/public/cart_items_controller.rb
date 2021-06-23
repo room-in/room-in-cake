@@ -23,20 +23,18 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    cart_items = CartItem.find_by(id: params[:id], client_id: current_client.id)
+    # cart_items = CartItem.find_by(params[:id], client_id: current_client.id)
+    cart_items = CartItem.find(params[:id])
     cart_items.destroy
     flash[:danger] = "カートから削除しました"
     redirect_to cart_items_path
   end
 
   def destroy_all
-    customer = Customer.find(current_customer.id)
-    if customer.cart_items.destroy_all
-      flash[:notice] = "カート内の商品を全て削除しました。"
-      redirect_to cart_items_path
-    else
-      render index
-    end
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
+    flash[:alert] = "カートの商品を全て削除しました"
+    redirect_to cart_items_path
   end
 
 

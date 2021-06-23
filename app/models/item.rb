@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  belongs_to :cart_item
+  has_many :cart_items, dependent: :destroy
   attachment :image
   belongs_to :genre
   validates :name, presence: true
