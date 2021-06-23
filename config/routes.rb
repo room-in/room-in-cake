@@ -27,10 +27,10 @@ Rails.application.routes.draw do
     # get 'customers/unsubscribe' => 'public/customers#unsubscribe'
     # patch 'customers/withdraw' => 'public/customers#withdraw'
     resources :cart_items, except: [:new,:show,:edit]
-    delete 'cart_items/destory_all' => 'public/cart_items#destroy_all'
-    get 'orders/complete' => 'public/orders#complete'
+    delete 'cart_items/destory_all' => 'cart_items#destroy_all'
+    get 'orders/complete' => 'orders#complete'
+    post 'orders/confirm' => 'orders#confirm'
     resources :orders, only: [:new, :create, :index, :show]
-    post 'orders/confirm' => 'public/orders#confirm'
     resources :adresses, except: [:new, :show]
   end
     namespace :admin do
