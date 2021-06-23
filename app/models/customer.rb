@@ -14,6 +14,7 @@ class Customer < ApplicationRecord
 
   has_many :adresses, dependent: :destroy
   
+  
   def active_for_authentication?
     super && (self.is_deleted == false)
   end

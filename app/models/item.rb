@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  belongs_to :cart_item
   attachment :image
   belongs_to :genre
   validates :name, presence: true
