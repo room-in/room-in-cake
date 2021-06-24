@@ -1,6 +1,6 @@
 <%# エラーメッセージ %>
-   <% if  object.errors.any? %>
-      <div class="alert alert-warning">
+   <% if object.errors.any? %>
+      <div>
         <ul>
           <%  object.errors.full_messages.each do |message| %>
             <li><%= message %></li>
