@@ -1,17 +1,10 @@
 <div class="container">
+ 　<!--エラーメッセージ表示-->
+ 　<%= render 'public/error.msg', object: @adress %>
+
   <div class="my-3">
     <h4>配送先登録/一覧</h4>
   </div>
-<% if  @adress.errors.any? %>
-  <div class="alert alert-warning">
-    <ul>
-      <%  @adress.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
   <%= form_with model:@adress,local:true do |f| %>
     <table class="form">
       <tbody>

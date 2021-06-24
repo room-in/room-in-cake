@@ -14,6 +14,7 @@ class Customer < ApplicationRecord
   validates :postal_code,presence: true , length: { minimum: 7, maximum: 7 }
   validates :address, presence: true, length: { minimum: 5, maximum: 50 }
   validates :telephone_number, presence: true, length: { minimum: 10, maximum: 12 }
+  validates :email, presence: true
 
 #アソシエーション
   has_many :adresses, dependent: :destroy

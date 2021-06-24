@@ -25,7 +25,7 @@ class Public::AdressesController < ApplicationController
     if @adress.update(adress_params)
       redirect_to adresses_path(@adress)
     else
-      render edit
+      render 'edit'
     end
   end
 
