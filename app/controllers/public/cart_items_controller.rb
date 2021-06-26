@@ -1,5 +1,6 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
+  
   def create
     @item = Item.find(params[:cart_item][:id])
     @cart_item = CartItem.new
@@ -23,6 +24,7 @@ class Public::CartItemsController < ApplicationController
     end
       redirect_to cart_items_path
   end
+  
   def index
      # @cart_items = current_customer.cart_items
     @cart_items = CartItem.where(customer_id:current_customer.id)

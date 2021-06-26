@@ -6,8 +6,9 @@ class Adress < ApplicationRecord
     # アソシエーション
     belongs_to :customer
 
-   def full_delivery
+
+    def full_delivery
          '〒' + self.postal_code + '　' + self.delivery + '　' + self.name
-   end
+    end
 
 end

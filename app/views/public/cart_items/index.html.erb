@@ -44,7 +44,9 @@
 			  		</td>
 			  		<td>
 			  			<%= @test_secod = (cart_item.item.sub_price * 1.1 * cart_item.quantity).round %>
-			  			<%@test += @test_secod %>
+			  			<% @test += @test_secod %>
+
+             
 			  		</td>
 			  		<td>
 			  			<%= button_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" %>
