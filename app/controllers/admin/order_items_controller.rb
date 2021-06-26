@@ -13,6 +13,5 @@ def order_params
 end
 end
 def items_params
- name
- sub_price
+params.require(:items).permit(:items, :sub_price)
 end
