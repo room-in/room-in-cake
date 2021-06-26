@@ -7,13 +7,14 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag('favicon.ico') %>
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar">
         <div class=container>
-          <div class="navbar-brand">NaganoCake</div>
+          <div class="navbar-brand"><%= image_tag "logo1.png"%></div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -54,7 +55,7 @@
 
     <%= yield %>
     </main>
-    <footer class="footer", style="background-color: #f8f9fa;">
+    <footer class="footer">
       <div class="container text-center mt-3">
         <p><smal>&copy; nagano_cake.inc</smal></p>
       </div>
