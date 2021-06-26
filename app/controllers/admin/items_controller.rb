@@ -6,7 +6,7 @@ def new
   @genres = Genre.all
 end
 def index
-  @items = Item.all
+  @items = Item.page(params[:page]).per(10)
   @genreitem = Genre.all
 end
 def create
@@ -25,6 +25,7 @@ end
 
 def edit
   @item = Item.find(params[:id])
+  @genres = Genre.all
 end
 
   private
