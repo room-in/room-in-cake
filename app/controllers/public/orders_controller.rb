@@ -5,6 +5,19 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def index
+    @orders = Order.where(customer_id:current_customer)
+  end
+
+  
+  def show
+    @order = Order.find(params[:id])
+  end
+  
+  
+  
+  
+
   def create
     @order = Order.new(orders_params)
     @order.save
@@ -40,9 +53,14 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
-
-private
+  private
+  
+  def order_params
+     params.require(:order).permit(:customer_id, :address, :pay_selection, :postage, :total_price, :order_status)
+  end
+  
   def orders_params
     params.require(:order).permit(:pay_selection, :postal_code, :address, :name)
   end
+
 end
