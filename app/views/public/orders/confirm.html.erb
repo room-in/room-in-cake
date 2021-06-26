@@ -1,0 +1,76 @@
+    <div class="container">
+
+      <h3>注文確認画面</h3>
+
+      <%= form_with model:[@cart_item, @order], url: orders_complete_path, local: true do |f| %>
+      <div class="row d-flex justify-content-between">
+        <table class="table-bordered col-md-8">
+            <tr>
+              <th>商品名</th>
+              <th>単価（税込)</th>
+              <th>数量</th>
+              <th>小計</th>
+            </tr>
+          <tbody>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td><%= cart_item.item.name %></td>
+                <td><%= (cart_item.item.sub_price * 1.1).round %></td>
+                <td><%= cart_item.item.quantity %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <%= @test_secod = (cart_item.item.sub_price * 1.1 * cart_item.quantity).round %>
+    			  	<% @test += @test_secod %>
+  			  	</tr>
+          </tbody>
+        </table>
+        <!-- ----------------------------------------------------------------------- -->
+        <table class="table-bordered col-md-3 offset-md-1">
+          <tr>
+            <th class="bg-warning">送料</th>
+            <td>800</td>
+          </tr>
+          <tr>
+            <th class="bg-warning">商品合計</th>
+            <td>1,760(仮)</td>
+          </tr>
+          <tr>
+            <th class="bg-warning">請求金額合計</th>
+            <td>2,560(仮)</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ------------------------------------------------------------------ -->
+      <table class="line-height">
+        <tr>
+          <td><strong>支払い方法</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <% if @order.pay_selection == false %>
+            　クレジットカード
+            <% else %>
+              銀行振込
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>お届け先</strong></td>
+        </tr>
+        <tr>
+          <td><%= '〒' + @order.postal_code %></td>
+          <td><%= @order.address %></td>
+        </tr>
+        <tr>
+          <td><%= @order.name %></td>
+        </tr>
+      </table>
+
+      <div class="d-flex justify-content-center">
+        <%= f.submit "注文を確定する" %>
+      </div>
+    <% end %>
+    </div>

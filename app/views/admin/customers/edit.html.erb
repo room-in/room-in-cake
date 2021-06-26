@@ -1,17 +1,16 @@
     <div class="container">
+        <!--エラーメッセージ表示-->
+        <%= render 'public/error.msg', object: @customer %>
 
-            <!--editアクションの中で、変数作って表示した方が短くなるかも？？-->
-            <!--＠変数名 = params[:fast_name,:second_name]で送信されたデータから取り出せる？？-->
-            <div>
+
+            <div class= "my-3">
             <h3><%= (@customer.fast_name + @customer.second_name) %> の会員情報</h3>
             </div>
-            <!--変更前は、model:@customerのみの記述-->
-            <!--admin/customer/:idではなく、customer/:idにデータが送られていた為、エラー発生→url指定して解決-->
             <%= form_with model:@customer, url: admin_customer_path(@customer), local:true do |f| %>
             <table class="form">
                 <tbody>
                     <tr class="form-group row">
-                       <td class="col-md-3" ><%= f.label :会員ID %></td>
+                       <td class="col-md-3"><%= f.label :会員ID %></td>
                        <td class="col-md-4"><%= f.label @customer.id %></td>
                     </tr>
                     <!--.form-inlineで中にmargin書き込む？？-->
@@ -56,12 +55,12 @@
                     </tr>
                 </tbody>
             </table>
-
-                <div class="form_btn">
-                <div class="col-md-4 offset-md-3">
-                <%= f.submit '変更を保存',  class:"btn btn-success" %>
+　　　　　　<!--送信ボタン-->
+　　　　　　<div class="form_btn mb-3">
+　　　　　　    <div class="col-md-4 offset-md-3">
+　　　　　　        <%= f.submit '変更を保存',  class:"btn btn-success" %>
                 </div>
-                </div>
+            </div>
            <% end %>
       </div>
     </div>
