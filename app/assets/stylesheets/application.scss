@@ -17,15 +17,24 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
- body {
+
+
+// footerの表示位置固定
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-
-// footerの表示位置固定
 footer {
   margin-top: auto;
 }
 
-
+//devise機能のメッセージの色を指定
+.notice {
+  margin-left: 5%;
+  color: green;
+}
+.alert {
+  margin-left: 5%;
+  color: red;
+}

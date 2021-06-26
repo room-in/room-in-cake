@@ -1,8 +1,10 @@
 <div class="container">
+ 　<!--エラーメッセージ表示-->
+ 　<%= render 'public/error.msg', object: @adress %>
+
   <div class="my-3">
     <h4>配送先登録/一覧</h4>
   </div>
-
   <%= form_with model:@adress,local:true do |f| %>
     <table class="form">
       <tbody>
