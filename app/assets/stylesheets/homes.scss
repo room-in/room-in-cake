@@ -5,7 +5,7 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px 0;
-} 
+}
 
 
 .box {
@@ -17,6 +17,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #000;
+    // background-color: #000;
+    background-color: rgba(0,0,0,0.6);
     color: #fff;
+    padding: 20px 20px;
 }
+
