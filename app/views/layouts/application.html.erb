@@ -44,6 +44,14 @@
       </nav>
     </header>
     <main>
+    <%# deivseのフラッシュメッセージを表示 %>
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% elsif alert %>
+　    <p class="alert"><%= alert %></p>
+  　<% end %>
+
+
     <%= yield %>
     </main>
     <footer class="footer", style="background-color: #f8f9fa;">

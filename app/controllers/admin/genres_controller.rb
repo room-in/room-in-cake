@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @genres = Genre.all
     @genre = Genre.new
@@ -11,7 +12,8 @@ class Admin::GenresController < ApplicationController
       redirect_to admin_genres_path
     else
       flash[:warning] = "入力内容を確認してください"
-  		render :index
+      @genres = Genre.all
+  		render 'index'
   	end
   end
 

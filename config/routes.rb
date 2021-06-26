@@ -26,8 +26,8 @@ Rails.application.routes.draw do
     end
     # get 'customers/unsubscribe' => 'public/customers#unsubscribe'
     # patch 'customers/withdraw' => 'public/customers#withdraw'
-    resources :cart_items, except: [:new,:show,:edit]
     delete 'cart_items/destory_all' => 'cart_items#destroy_all'
+    resources :cart_items, except: [:new,:show,:edit]
     get 'orders/complete' => 'orders#complete'
     post 'orders/confirm' => 'orders#confirm'
     resources :orders, only: [:new, :create, :index, :show]

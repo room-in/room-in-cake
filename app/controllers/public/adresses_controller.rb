@@ -1,4 +1,5 @@
 class Public::AdressesController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
     @adress = Adress.new
@@ -25,7 +26,7 @@ class Public::AdressesController < ApplicationController
     if @adress.update(adress_params)
       redirect_to adresses_path(@adress)
     else
-      render edit
+      render 'edit'
     end
   end
 
