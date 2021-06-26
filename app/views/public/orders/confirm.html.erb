@@ -2,24 +2,27 @@
 
       <h3>注文確認画面</h3>
 
-      <!-- 枠線の色はcssで変更する -->
+      <%= form_with model:[@cart_item, @order], url: orders_complete_path, local: true do |f| %>
       <div class="row d-flex justify-content-between">
         <table class="table-bordered col-md-8">
-          <thead class="bg-warning">
             <tr>
               <th>商品名</th>
               <th>単価（税込)</th>
               <th>数量</th>
               <th>小計</th>
             </tr>
-          </thead>
           <tbody>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td><%= cart_item.item.name %></td>
+                <td><%= (cart_item.item.sub_price * 1.1).round %></td>
+                <td><%= cart_item.item.quantity %></td>
+              </tr>
+            <% end %>
             <tr>
-              <td>商品画像&チョコレートバナナ（仮）</td>
-              <td>1個</td>
-              <td>1,100(仮)</td>
-              <td>1,100</td>
-            </tr>
+              <%= @test_secod = (cart_item.item.sub_price * 1.1 * cart_item.quantity).round %>
+    			  	<% @test += @test_secod %>
+  			  	</tr>
           </tbody>
         </table>
         <!-- ----------------------------------------------------------------------- -->
@@ -42,20 +45,32 @@
       <!-- ------------------------------------------------------------------ -->
       <table class="line-height">
         <tr>
-          <th><strong>支払い方法</strong></th>
-          <td>クレジットカード（仮）</td>
+          <td><strong>支払い方法</strong></td>
         </tr>
         <tr>
-          <th><strong>お届け先</strong></th>
-          <td>住所表示(仮)</td>
+          <td>
+            <% if @order.pay_selection == false %>
+            　クレジットカード
+            <% else %>
+              銀行振込
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>お届け先</strong></td>
         </tr>
         <tr>
-          <th></th>
-          <td>氏名（仮）</td>
+          <td><%= '〒' + @order.postal_code %></td>
+          <td><%= @order.address %></td>
+        </tr>
+        <tr>
+          <td><%= @order.name %></td>
         </tr>
       </table>
 
       <div class="d-flex justify-content-center">
-        <%= link_to "購入を確定する", orders_path(@order), method: :post, class:"btn btn-primary" %>
+        <%= f.submit "注文を確定する" %>
       </div>
+    <% end %>
     </div>
