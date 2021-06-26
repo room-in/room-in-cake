@@ -11,8 +11,6 @@ class Public::CartItemsController < ApplicationController
     
     #@ald_cart_item.present?
     @old_cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:id])
-    # @cart_item_add = current_end_user.cart_items.find_by(item_id: params[:cart_item][:item_id])
-    # @old_cart_item.each do |cart_item|
     if @old_cart_item.present?
      @old_cart_item.quantity += params[:cart_item][:quantity].to_i
      @old_cart_item.save
