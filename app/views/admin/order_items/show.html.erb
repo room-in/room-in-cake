@@ -2,16 +2,42 @@
   <div class="row">
 		<h1>注文履歴詳細</h1>
 	</div>
-	<div class="row">
-<div class="row">
 		<div class="col-md-10">
 		  
-		  
-		 <strong>購入者 <%= link_to "orders.name",admin_customer_path %></strong> 
-			<strong>配送先</strong> 〒
-			<strong>支払い方法</strong> <br>
-			<strong>注文ステータス</strong> 
-							<%= f.submit '更新' %>
+		<table>
+			<tr>
+				<td><strong>購入者</strong></td> 
+				<td><%= @order.name %></td>
+			</tr>
+			<tr>
+				<td><strong>注文日</strong></td>
+				<td></td>
+			</tr>
+			
+			<tr>
+        <td><strong>配達先</strong></td>
+        <td><%= '〒' + @order.postal_code %></td>
+        <td><%= @order.address %></td>
+      </tr>
+      <tr>
+      	<td></td>  
+        <td><%= @order.name %></td>
+    　</tr>
+    　<tr>
+    　	<td><strong>支払い方法</strong></td>
+    　	<td>
+        <% if @order.pay_selection == false %>
+          クレジットカード
+        <% else %>
+          銀行振込
+        <% end %>
+      </td>
+    　</tr>
+    　<tr>
+    　	<td><strong>注文ステータス</strong></td>
+    　</tr>
+		</table>  
+		 
 		  
 			<table class="table table-bordered">
 				<thead>
@@ -35,7 +61,6 @@
 							</td>
 							<td><%= f.submit '更新' %>
 								<br></td>
-							<% end %>
 						</tr>
 					<% end %>
 				</tbody>
@@ -49,11 +74,11 @@
           <tr>
             <td >送料</td>
             <td ><%=  %></td>
+          </tr>  
           <tr>
             <td >請求金額合計</td>
             <td ><%=  %>円</td>
           </tr>
         </table>
       </div>
-    </div>
-		</div>
+</div>

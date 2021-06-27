@@ -15,7 +15,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @orders.each do |order| %>
+            <% @instances.each do |instance| %>
               <tr>
                 <td><%= order.created_at %></td>
                 <td>
@@ -23,6 +23,7 @@
                   <%= order.address %></br>
                   <%= order.name %>
                 </td>
+                <td><%= order.item %></td>
                 <td><%= order.total_price %>円</td>
                 <td><%= order.order_status %></td>
                 <td><%=link_to "表示する", order_path(order.id), class: "btn btn-primary" %></td>
