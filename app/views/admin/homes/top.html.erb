@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+			<h1 class="title">注文履歴一覧</h1>
+			<table class="table">
+			  <tr>
+						<th>購入日時</th>
+						<th>購入者</th>
+						<th>注文個数</th>
+						<th>注文ステータス</th>
+					</tr>
+				</thead>
+				<tbody>
+				  </thead>
+				<tbody>
+					<% @items.each do |itmem| %>
+					<tr>
+						<td> <%= link_to "orders.created_at",admin_order_item_path %> </td>
+						<td><%= orders.name %></td>
+						<td><%= order_items.quantity %></td>
+						<td><%= orders.order_status %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<%= paginate @items %>
+    </div>
+  </div>
+</div>

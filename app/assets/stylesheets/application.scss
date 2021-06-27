@@ -16,3 +16,36 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+// navbarの色指定
+.navbar {
+  background-color: #432;
+  a {
+    color: #fff;
+  }
+}
+
+
+// footerの表示位置固定
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+footer {
+  margin-top: auto;
+  background-color: #432;
+  p {
+    color : #fff;
+  }
+}
+
+//devise機能のメッセージの色を指定
+.notice {
+  margin-left: 5%;
+  color: green;
+}
+.alert {
+  margin-left: 5%;
+  color: red;
+}

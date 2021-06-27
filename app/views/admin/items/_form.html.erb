@@ -1,0 +1,48 @@
+ <%= form_with model: item, url: admin_items_path, local: true do |f| %>
+  		<table class='table'>
+  		  <tr>
+    		  <td>
+    		  <%= f.label :商品画像 %>
+          <%= f.attachment_field :image %><br>
+    		  </td>
+    		  </tr>
+    		  <tr>
+    		  <td>
+    		  <%= f.label :商品名 %>
+        <%= f.text_field :name, class: "form-control name" %>
+    		  </td>
+    		  </tr>
+    		  <tr>
+    		  <td>
+    		  <%= f.label :商品説明 %>
+          <%= f.text_area :text, class: "form-control text" %>
+    		  </td>
+    		  </tr>
+    		  <tr>
+    		  <td>
+    		 <%= f.label :ジャンル %>
+    		  <%= f.collection_select(:genre_id, genres, :id, :name) %>
+    		  </td>
+    		  </tr>
+    		  <tr>
+    		  <td>
+    		  <%= f.label :税抜価格 %>
+    		  <%= f.text_field :sub_price %>円
+    		  </td>
+    		  </tr>
+    		  <tr>
+    		  <td>
+    		   <%= f.label :販売ステータス %>
+    		   <%= f.radio_button :status, true %>販売中
+    		   <%= f.radio_button :status, false %>販売停止中
+          </td>
+          </tr>
+          <tr>
+          <td>
+             <%= f.submit  submit_name, class: 'btn btn-success' %>
+          </td>
+          </tr>
+       </div>
+        </tr>
+     </table>
+      <% end %>
