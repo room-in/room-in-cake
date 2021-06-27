@@ -3,10 +3,13 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @total_price = params[:total_price]
   end
 
   def index
-    @orders = Order.all
+    orders = Order.all
+    cart_items = CartItem.all
+    @instances = oreders | cart_items
   end
 
 
@@ -19,12 +22,17 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(orders_params)
     @order.customer_id = current_customer.id
     @order.save
+    # ＠oderの持っているIDをorderitemの中に格納する記述
+    current_customer.cart_items.each do |cart_item|
+      OrderItem.create!(item_id: cart_item.item.id, quantity: cart_item.quantity, main_price: @order.total_price, make_status: 0, order_id: @order.id)
+    end
     redirect_to orders_complete_path
   end
 
 
   def confirm
    @order = Order.new
+   @total_price = params[:order][:total_price]
    @cart_items = current_customer.cart_items
     if params[:order][:pay_selection] == "true"
       @order.pay_selection = true
@@ -60,7 +68,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def orders_params
-    params.require(:order).permit(:pay_selection, :postal_code, :address, :name)
+    params.require(:order).permit(:pay_selection, :postal_code, :address, :name, :total_price)
   end
 
 end
