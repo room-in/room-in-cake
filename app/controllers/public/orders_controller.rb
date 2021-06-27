@@ -17,15 +17,27 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(orders_params)
     @order.customer_id = current_customer.id
-    @order =  @order.order_items
     @order.save
+    current_customer.cart_items.each do |cart_item|
+    @order_items = Order_items.new
+    @order_items.quantity = cart_item.quantity
+    @order_items.main_price = cart_item.item.sub_price.to_i * 1.08
+    @order_items.item_id = cart_item.item.id
+    @order_items.order_id = @order.id
+    @order_items.make_status = 0
+    @order_items.save
+  　end
     redirect_to orders_complete_path
+    current_customer.cart_items.destroy_all
   end
 
 
   def confirm
+    byebug
    @order = Order.new
+   @total_price = params[:order][:total_price]
    @cart_items = current_customer.cart_items
+   
     if params[:order][:pay_selection] == "true"
       @order.pay_selection = true
     else
@@ -60,5 +72,6 @@ class Public::OrdersController < ApplicationController
   def orders_params
     params.require(:order).permit(:pay_selection, :postal_code, :address, :name)
   end
-
+  
+  end
 end
