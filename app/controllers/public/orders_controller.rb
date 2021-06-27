@@ -6,9 +6,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    orders = Order.all
-    cart_items = CartItem.all
-    @instances = oreders | cart_items
+    @orders = Order.all
   end
 
 
@@ -20,7 +18,11 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(orders_params)
     @order.customer_id = current_customer.id
-    @order.save
+     @order.save
+    current_customer.cart_items.each do |cart_item|
+      order_item = @order.order_items.new(:item_id, :order_id, :quantity, :main_price)
+      order_item.save
+    end
     redirect_to orders_complete_path
   end
 
