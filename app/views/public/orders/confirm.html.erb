@@ -1,86 +1,76 @@
-<% @test = 0 %>
+    <div class="container">
 
-<div class="container">
-  <h3>注文確認画面</h3>
+      <h3>注文確認画面</h3>
 
- <!-- ------------------------各種商品小計----------------------------------------------- -->
-  <div class="row d-flex justify-content-between">
-    <table class="table-bordered col-md-8">
-        <tr>
-          <th>商品名</th>
-          <th>単価（税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-        </tr>
-      <tbody>
-        <% @cart_items.each do |cart_item| %>
+      <%= form_with model:[@cart_item, @order], url: orders_complete_path, local: true do |f| %>
+      <div class="row d-flex justify-content-between">
+        <table class="table-bordered col-md-8">
+            <tr>
+              <th>商品名</th>
+              <th>単価（税込)</th>
+              <th>数量</th>
+              <th>小計</th>
+            </tr>
+          <tbody>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td><%= cart_item.item.name %></td>
+                <td><%= (cart_item.item.sub_price * 1.1).round %></td>
+                <td><%= cart_item.item.quantity %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <%= @test_secod = (cart_item.item.sub_price * 1.1 * cart_item.quantity).round %>
+    			  	<% @test += @test_secod %>
+  			  	</tr>
+          </tbody>
+        </table>
+        <!-- ----------------------------------------------------------------------- -->
+        <table class="table-bordered col-md-3 offset-md-1">
           <tr>
-            <td><%= cart_item.item.name %></td>
-            <td><%= (cart_item.item.sub_price * 1.1).round %></td>
-            <td><%= cart_item.quantity %></td>
-            <td>
-             <%= @test_secod = (cart_item.item.sub_price * 1.1 * cart_item.quantity).round %>
-             <% @test += @test_secod %>
-            </td>
+            <th class="bg-warning">送料</th>
+            <td>800</td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+          <tr>
+            <th class="bg-warning">商品合計</th>
+            <td>1,760(仮)</td>
+          </tr>
+          <tr>
+            <th class="bg-warning">請求金額合計</th>
+            <td>2,560(仮)</td>
+          </tr>
+        </table>
+      </div>
 
-    <!-- ------------------------最終価格表示----------------------------------------------- -->
-    <table class="table-bordered col-md-3 offset-md-1">
-      <tr>
-        <th class="bg-warning">送料</th>
-        <td>800</td>
-      </tr>
-      <tr>
-        <th class="bg-warning">商品合計</th>
-        <td><%= @test %></td>
-      </tr>
-      <tr>
-        <th class="bg-warning">請求金額合計</th>
-        <td>
-          <% total_test = @test + 800 %>
-          <%= total_test %>
-        </td>
-      </tr>
-    </table>
-  </div>
+      <!-- ------------------------------------------------------------------ -->
+      <table class="line-height">
+        <tr>
+          <td><strong>支払い方法</strong></td>
+        </tr>
+        <tr>
+          <td>
+            <% if @order.pay_selection == false %>
+            　クレジットカード
+            <% else %>
+              銀行振込
+            <% end %>
+          </td>
+        </tr>
 
-  <!-- ----------------------支払い方法&お届け先-------------------------------------------- -->
-  <table class="line-height">
-    <tr>
-      <td><strong>支払い方法</strong></td>
-    </tr>
-    <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
-    <%= f.hidden_field :pay_selection, :value => @order.pay_selection %>
-    <%= f.hidden_field :postal_code, :value => @order.postal_code %>
-    <%= f.hidden_field :address, :value => @order.address %>
-    <%= f.hidden_field :name, :value => @order.name %>
-    <tr>
-      <td>
-        <% if @order.pay_selection == false %>
-          クレジットカード
-        <% else %>
-          銀行振込
-        <% end %>
-      </td>
-    </tr>
+        <tr>
+          <td><strong>お届け先</strong></td>
+        </tr>
+        <tr>
+          <td><%= '〒' + @order.postal_code %></td>
+          <td><%= @order.address %></td>
+        </tr>
+        <tr>
+          <td><%= @order.name %></td>
+        </tr>
+      </table>
 
-    <tr>
-      <td><strong>お届け先</strong></td>
-    </tr>
-    <tr>
-      <td><%= '〒' + @order.postal_code %></td>
-      <td><%= @order.address %></td>
-    </tr>
-    <tr>
-      <td><%= @order.name %></td>
-    </tr>
-  </table>
-
-  <div class="d-flex justify-content-center">
-    <%= f.submit "注文を確定する" %>
+      <div class="d-flex justify-content-center">
+        <%= f.submit "注文を確定する" %>
+      </div>
     <% end %>
-  </div>
-</div>
+    </div>
