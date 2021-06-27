@@ -6,7 +6,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    orders = Order.all
+    cart_items = CartItem.all
+    @instances = oreders | cart_items
   end
 
 
