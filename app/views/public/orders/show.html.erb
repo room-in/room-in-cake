@@ -16,13 +16,13 @@
             <tr>
               <td>配送先</td>
               <td>
-                 <%= full_delivery %>
+                 <%= @order.full_delivery %>
               </td>
               <td></td>
             </tr>
             <tr>
               <td>支払い方法</td>
-              <td><%= @order.pay_sele %></td>
+              <td><%= @order.pay_selection %></td>
             </tr>
             <tr>
               <td>ステータス</td>
@@ -47,7 +47,7 @@
             </tr>
             <tr>
               <td>ご請求額</td>
-              <td><%= @order.total_price + @order.postage %></td>
+              <td><%= @order.total_price.to_i + @order.postage.to_i %></td>
             </tr>
           </tbody>
         </table>
@@ -71,13 +71,13 @@
           </tr>
         </thead>
 
-        <% @order.each do |d| %>
+        <% @orderitem.each do |item| %>
         <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><%= item.item.name %></td>
+            <td><%= item.sub_price %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.sub_price.to_i * item.quantity.to_i %></td>
           </tr>
         </tbody>
         <% end %>
