@@ -3,17 +3,27 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+  end
 
+  def index
+    @orders = Order.where(customer_id:current_customer)
+  end
+
+  
+  def show
+    @order = Order.find(params[:id])
   end
   
+  
+  
+  
+
   def create
-    @cart_item.customer_id = current_customer.id
-    @cart_item.item_id = @item.id
-    @cart_item.quantity = params[:cart_item][:quantity]
-    @cart_item.save
+    @order = Order.new(orders_params)
+    @order.save
     redirect_to orders_complete_path
   end
-  
+
 
   def confirm
    @order = Order.new
@@ -29,7 +39,7 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.full_name
     elsif params[:order][:selection] == "1"
-      adress = Address.find(params[:order][:address_section])
+      adress = Adress.find_by(params[:order][:address_selection])
       @order.postal_code = adress.postal_code
       @order.address = adress.delivery
       @order.name = adress.name
@@ -41,6 +51,16 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
+  end
+
+  private
+  
+  def order_params
+     params.require(:order).permit(:customer_id, :address, :pay_selection, :postage, :total_price, :order_status)
+  end
+  
+  def orders_params
+    params.require(:order).permit(:pay_selection, :postal_code, :address, :name)
   end
 
 end

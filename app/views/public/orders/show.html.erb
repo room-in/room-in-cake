@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+      <h2>注文履歴詳細</h2>
+    </div>
+  </div>
+        <strong>注文情報</strong>
+
+      <div class="row mt-3">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>注文日</td>
+              <td><%=@order.created_at %></td>
+            </tr>
+
+            <tr>
+              <td>配送先</td>
+              <td>
+                address
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>支払い方法</td>
+              <td><%= @order.pay_sele %></td>
+            </tr>
+            <tr>
+              <td>ステータス</td>
+              <td><%= @order.order_status %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+      <div>
+        <strong>請求情報</strong>
+      </div>
+      <div>
+          <tbody>
+            <tr>
+              <td>商品合計</td>
+              <td><%= @order.total_price %></td>
+            </tr>
+            <tr>
+              <td>配送料</td>
+              <td><%= @order.postage %></td>
+            </tr>
+            <tr>
+              <td>ご請求額</td>
+              <td><%= @order.total_price + @order.postage %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row mt-5">
+      <strong>注文内容</strong>
+  </div>
+
+  <div class="row mt-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品</th>
+            <th>単価(税込)</th>
+            <th>個数</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+
+        <% @order_details.each do |d| %>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+  </div>
+
+</div>

@@ -17,6 +17,13 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+// navbarの色指定
+.navbar {
+  background-color: #432;
+  a {
+    color: #fff;
+  }
+}
 
 
 // footerの表示位置固定
@@ -27,6 +34,10 @@ body {
 }
 footer {
   margin-top: auto;
+  background-color: #432;
+  p {
+    color : #fff;
+  }
 }
 
 //devise機能のメッセージの色を指定

@@ -2,7 +2,6 @@ class Admin::OrderItemsController < ApplicationController
 before_action :authenticate_admin!
 def show
  @order = Order_items.find(params[:id])
-
 end
 def updeate
     @order = Order_items.find(params[:id])
@@ -15,6 +14,5 @@ def order_params
 end
 end
 def items_params
- name
- sub_price
+params.require(:items).permit(:items, :sub_price)
 end
