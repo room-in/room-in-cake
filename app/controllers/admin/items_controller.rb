@@ -29,7 +29,8 @@ def edit
 end
 
 def update
-  if @item = Item.find(params[:id])
+   @item = Item.find(params[:id])
+  if @item.update(item_params)
     redirect_to admin_items_path(@item.id)
   else
      render "edit"
