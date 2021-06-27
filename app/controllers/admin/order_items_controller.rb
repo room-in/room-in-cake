@@ -2,7 +2,8 @@ class Admin::OrderItemsController < ApplicationController
   before_action :authenticate_admin!
 
   def show
-   @order = Order_items.find(params[:id])
+   @order = Order.find(params[:id])
+   @order_item = @order.order_items.all
   end
 
   def updeate
