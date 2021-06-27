@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
-  
+
 def new
   @newitem = Item.new
   @genres = Genre.all
@@ -27,6 +27,15 @@ def edit
   @item = Item.find(params[:id])
   @genres = Genre.all
 end
+
+def update
+  if @item = Item.find(params[:id])
+    redirect_to admin_items_path(@item.id)
+  else
+     render "edit"
+  end
+end
+
 
   private
 def item_params
