@@ -16,7 +16,9 @@
               <tr>
                 <td><%= cart_item.item.name %></td>
                 <td><%= (cart_item.item.sub_price * 1.1).round %></td>
-                <td><%= cart_item.item.quantity %></td>
+                <!--<td><#%= cart_item.item.quantity %></td>-->
+                <% @test_secod = (cart_item.item.sub_price * 1.1 * cart_item.quantity).round %>
+    			  	  <% @test += @test_secod %>
               </tr>
             <% end %>
             <tr>
@@ -50,7 +52,7 @@
         <tr>
           <td>
             <% if @order.pay_selection == false %>
-            　クレジットカード
+              クレジットカード
             <% else %>
               銀行振込
             <% end %>
