@@ -9,14 +9,9 @@ class Public::OrdersController < ApplicationController
     @orders = Order.where(customer_id:current_customer)
   end
 
-  
   def show
     @order = Order.find(params[:id])
   end
-  
-  
-  
-  
 
   def create
     @order = Order.new(orders_params)
