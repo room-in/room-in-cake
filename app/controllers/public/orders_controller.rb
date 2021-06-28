@@ -10,11 +10,11 @@ class Public::OrdersController < ApplicationController
     @orders = Order.all
   end
 
-
   def show
     @order = Order.find(params[:id])
     @orderitems = @order.order_items
   end
+
 
 
   def create
@@ -26,6 +26,7 @@ class Public::OrdersController < ApplicationController
       OrderItem.create!(item_id: cart_item.item.id, quantity: cart_item.quantity, main_price: @order.total_price, make_status: 0, order_id: @order.id)
     end
     redirect_to orders_complete_path
+    current_customer.cart_items.destroy_all
   end
 
 
@@ -33,6 +34,7 @@ class Public::OrdersController < ApplicationController
    @order = Order.new
    @total_price = params[:order][:total_price]
    @cart_items = current_customer.cart_items
+   
     if params[:order][:pay_selection] == "true"
       @order.pay_selection = true
     else
@@ -69,5 +71,6 @@ class Public::OrdersController < ApplicationController
   def orders_params
     params.require(:order).permit(:pay_selection, :postal_code, :address, :name, :total_price)
   end
-
+  
+  
 end
