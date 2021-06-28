@@ -1,4 +1,4 @@
-<div class="container">
+<<div class="container">
   <div>
     <h2>注文情報入力</h2>
 
@@ -48,18 +48,18 @@
         </tr>
         <tr>
           <td><%= form.label :住所 %></td>
-          <td><%= form.text_field :delivery, class: "form-control" %></td>
+          <td><%= form.text_field :delivery, class: "form-control", :size => "60*30" %></td>
         </tr>
         <tr>
           <td><%= form.label :名前 %></td>
           <td><%= form.text_field :name, class: "form-control" %></td>
         </tr>
-
+           <%= form.hidden_field :total_price, :value => @total_price %>
         <tr>
           <td><%= form.submit "確認画面へ進む" %></td>
         </tr>
 
-
+     </table>
      <% end %>
-    </table>
+   
 </div>

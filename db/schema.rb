@@ -102,4 +102,5 @@ ActiveRecord::Schema.define(version: 2021_06_23_125014) do
     t.boolean "pay_selection", default: false, null: false
   end
 
+
 end
