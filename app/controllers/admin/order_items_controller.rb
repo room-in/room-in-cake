@@ -3,20 +3,22 @@ class Admin::OrderItemsController < ApplicationController
 
   def show
    @order = Order.find(params[:id])
-   @order_item = @order.order_items.all
+   @order_items = @order.order_items
+   # @order_item = @order.order_items.all
   end
 
-  def updeate
-      @order = Order_items.find(params[:id])
-      @order.update(order_params)
+  def update
+      @orderItem = OrderItem.find(params[:id])
+      @orderItem.update(order_item_params)
+      redirect_to admin_order_path(@orderItem.order.id)
   end
 
 
 
    private
 
-  def order_params
-   params.require(:order_items).permit(:customer_id, :created_at, :postal_code, :pay_selection, :address, :name, :quantity, :order_status, :postage, :total_price)
+  def order_item_params
+   params.require(:order_item).permit(:make_status)
   end
 
   def items_params
