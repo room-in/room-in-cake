@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :customers, except: [:new, :destroy, :create]
       resources :genres, except: [:new, :destroy, :show]
       resources :order_items, only: [:show, :edit, :update]
+      resources :orders, only: [:show, :update]
   end
 
 

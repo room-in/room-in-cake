@@ -36,8 +36,8 @@
     　   <tr>
     　	  <td><strong>注文ステータス</strong></td>
     　	  <td>
-    　	  	<%= form_with model: @order, url: admin_orders_path, local: true do |form| %>
-    　	    <%= form.select :make_status, OrderItem.make_statuses.keys.to_a %>
+    　	  	<%= form_with model: @order, url: admin_order_path(@order.id), local: true do |form| %>
+    　	    <%= form.select :order_status, Order.order_statuses.keys.to_a %>
     　	    <%= form.submit "更新",class:"btn btn-primary" %>
     　	    <% end %>
     　	  </td>
@@ -65,12 +65,12 @@
 							<% @test = 0 %>
 							<td><%= @test_second = (order_item.main_price * order_item.quantity) %></td>
 							<% @test += @test_second %>
-							<td></td>
-							<!--  <#%= form_with model: @order, url: orders_confirm_path, local: true do |form| %>-->
-							  <!--<#%= form_with :model: order_item, url: orders_confirm_path, method: :patch, local: true) do |f| %>-->
-							  <!--<#%= f.select :order_item_status, [["着手不可", 0], ["製作待ち", 1], ["製作中", 2], ["製作完了", 3]] ,selected: order_item.order_item_status_before_type_cast %>-->
-							<!--<#% end %>-->
-								<br></td>
+							<td>
+								<%= form_with model: order_item, url: admin_order_item_path(order_item.id), local: true do |form| %>
+    　	        <%= form.select :make_status, OrderItem.make_statuses.keys.to_a %>
+    　	        <%= form.submit "更新",class:"btn btn-primary" %>
+    　	        <% end %>
+							</td>
 						</tr>
 					<% end %>
 				</tbody>
