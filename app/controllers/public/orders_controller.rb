@@ -7,14 +7,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    orders = Order.all
-    cart_items = CartItem.all
-    @instances = oreders | cart_items
+    @orders = Order.all
   end
 
 
   def show
     @order = Order.find(params[:id])
+    @orderitems = @order.order_items
   end
 
 
