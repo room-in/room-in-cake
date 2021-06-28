@@ -1,16 +1,16 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def create
     @item = Item.find(params[:cart_item][:id])
     @cart_item = CartItem.new
     #同じ商品がカートにすでに入っていたら
     #自分自身（ログインしているユーザー）が同じ商品IDが保存されているカートを持っていた場合
-    
+
     #(カート目線)ログインしているユーザーと追加したい商品のIDが保存されているカートが既に存在していた場合
-    
+
     #(カート目線)ログインしているユーザーと追加したい商品のIDが保存されているカートがpresent?
-    
+
     #@ald_cart_item.present?
     @old_cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:id])
     if @old_cart_item.present?
@@ -24,7 +24,7 @@ class Public::CartItemsController < ApplicationController
     end
       redirect_to cart_items_path
   end
-  
+
   def index
      # @cart_items = current_customer.cart_items
     @cart_items = CartItem.where(customer_id:current_customer.id)

@@ -1,7 +1,5 @@
 
- <% @test = 0 %>
-
-
+<% @test = 0 %>
 
 <div class="container">
   <h3>注文確認画面</h3>
@@ -50,7 +48,6 @@
     </table>
   </div>
 
-  <!-- ----------------------支払い方法&お届け先-------------------------------------------- -->
   <table class="line-height">
     <tr>
       <td><strong>支払い方法</strong></td>
@@ -61,6 +58,7 @@
     <%= f.hidden_field :address, :value => @order.address %>
     <%= f.hidden_field :name, :value => @order.name %>
     <%= f.hidden_field :total_price, :value => @total_price %>
+
     <tr>
       <td>
         <% if @order.pay_selection == false %>
@@ -84,9 +82,9 @@
   </table>
 
 
-
   <div class="d-flex justify-content-center">
     <%= f.submit "注文を確定する" %>
     <% end %>
   </div>
+
 </div>

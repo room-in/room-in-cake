@@ -1,28 +1,31 @@
 <div class="container">
-  <div class="row">
       <h2>注文履歴詳細</h2>
-    </div>
-  </div>
-        <strong>注文情報</strong>
 
-      <div class="row mt-3">
-        <table class="table">
+<div class = "row">
+
+      <div>
+         <div>注文情報</div>
+        <table class="table-bordered">
+
           <tbody>
             <tr>
               <td>注文日</td>
-              <td><%=@order.created_at %></td>
+              <td><%= @order.created_at.strftime("%Y/%m/%d")%></td>
             </tr>
-
             <tr>
               <td>配送先</td>
               <td>
-                address
+                 <%= @order.full_delivery %>
               </td>
-              <td></td>
             </tr>
             <tr>
               <td>支払い方法</td>
-              <td><%= @order.pay_sele %></td>
+              <td>
+                <% if @order.pay_selection == false %>
+                クレジットカード
+                <% else %>
+                銀行振込
+                <% end %></td>
             </tr>
             <tr>
               <td>ステータス</td>
@@ -31,11 +34,11 @@
           </tbody>
         </table>
       </div>
-    </div>
-      <div>
-        <strong>請求情報</strong>
-      </div>
-      <div>
+
+      <div class="ml-5">
+        <div>請求情報</div>
+ <table class="table-bordered">
+
           <tbody>
             <tr>
               <td>商品合計</td>
@@ -43,25 +46,24 @@
             </tr>
             <tr>
               <td>配送料</td>
-              <td><%= @order.postage %></td>
+              <td>800</td>
             </tr>
             <tr>
               <td>ご請求額</td>
-              <td><%= @order.total_price + @order.postage %></td>
+              <td><%= @order.total_price.to_i + 800 %></td>
             </tr>
           </tbody>
         </table>
       </div>
+      </div>
 
-    </div>
-  </div>
 
   <div class="row mt-5">
       <strong>注文内容</strong>
   </div>
 
-  <div class="row mt-3">
-      <table class="table">
+  <div class>
+      <table class="table-bordered col-lg-12">
         <thead>
           <tr>
             <th>商品</th>
@@ -71,13 +73,13 @@
           </tr>
         </thead>
 
-        <% @order_details.each do |d| %>
+        <% @orderitems.each do |item| %>
         <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><%= item.item.name %></td>
+            <td><%= item.item.sub_price %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.item.sub_price.to_i * item.quantity.to_i %></td>
           </tr>
         </tbody>
         <% end %>
