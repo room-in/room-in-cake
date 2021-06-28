@@ -1,4 +1,7 @@
-<% @test = 0 %>
+
+ <% @test = 0 %>
+
+
 
 <div class="container">
   <h3>注文確認画面</h3>
@@ -57,6 +60,7 @@
     <%= f.hidden_field :postal_code, :value => @order.postal_code %>
     <%= f.hidden_field :address, :value => @order.address %>
     <%= f.hidden_field :name, :value => @order.name %>
+    <%= f.hidden_field :total_price, :value => @total_price %>
     <tr>
       <td>
         <% if @order.pay_selection == false %>
@@ -78,6 +82,8 @@
       <td><%= @order.name %></td>
     </tr>
   </table>
+
+
 
   <div class="d-flex justify-content-center">
     <%= f.submit "注文を確定する" %>

@@ -3,37 +3,38 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @total_price = params[:total_price]
   end
 
   def index
-    @orders = Order.where(customer_id:current_customer)
+    orders = Order.all
+    cart_items = CartItem.all
+    @instances = oreders | cart_items
   end
+
+
 
   def show
     @order = Order.find(params[:id])
-    @orderitem = @order.order_items
+    @orderitems = @order.order_items
   end
 
+
+
   def create
-    @order = Order.new(orders_params)
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
+    # ＠oderの持っているIDをorderitemの中に格納する記述
     current_customer.cart_items.each do |cart_item|
-    @order_items = Order_items.new
-    @order_items.quantity = cart_item.quantity
-    @order_items.main_price = cart_item.item.sub_price.to_i * 1.08
-    @order_items.item_id = cart_item.item.id
-    @order_items.order_id = @order.id
-    @order_items.make_status = 0
-    @order_items.save
-  　end
+      OrderItem.create!(item_id: cart_item.item.id, quantity: cart_item.quantity, main_price: @order.total_price, make_status: 0, order_id: @order.id)
+    end
     redirect_to orders_complete_path
     current_customer.cart_items.destroy_all
   end
 
 
   def confirm
-    byebug
    @order = Order.new
    @total_price = params[:order][:total_price]
    @cart_items = current_customer.cart_items
@@ -61,17 +62,19 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
   end
 
   private
 
-  def order_params
+  def order_param
      params.require(:order).permit(:customer_id, :address, :pay_selection, :postage, :total_price, :order_status)
   end
 
   def orders_params
-    params.require(:order).permit(:pay_selection, :postal_code, :address, :name)
+    params.require(:order).permit(:pay_selection, :postal_code, :address, :name, :total_price)
   end
   
-  end
+  
 end
